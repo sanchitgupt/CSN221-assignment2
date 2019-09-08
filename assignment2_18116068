@@ -1,0 +1,36 @@
+mov r0,0
+mov r1,0
+.loop:
+  mov r1,0
+  mov r3,1
+  .loop1:
+    add r4,r3,1
+    mul r5,r3,r3
+    mul r5,r5,r3
+    .loop2:
+      mul r6,r4,r4
+      mul r6,r6,r4
+      add r7,r5,r6
+      cmp r0,r7
+      beq .eqlabel
+      add r4,r4,1
+      mul r6,r4,r4
+      mul r6,r6,r4
+      add r7,r5,r6
+      cmp r0,r7
+      bgt .loop2
+      cmp r0,r7
+      beq .eqlabel
+    add r3,r3,1
+    mul r5,r3,r3
+    mul r5,r5,r3
+    cmp r0,r5
+    bgt .loop1
+  add r0,r0,1
+  cmp 2,r1
+  bgt .loop
+sub r2,r0,1       /*r2 holds the result*/
+.exit:
+  exit
+.eqlabel:
+  add r1,r1,1
